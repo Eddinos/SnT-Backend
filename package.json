@@ -1,0 +1,19 @@
+{
+  "name": "snt-backend",
+  "version": "1.0.0",
+  "description": "backend operations for SnT application",
+  "main": "server.js",
+  "scripts": {
+    "test": "gotestos"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eddinos/SnT-Backend.git"
+  },
+  "author": "Eddine Djerboua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eddinos/SnT-Backend/issues"
+  },
+  "homepage": "https://github.com/Eddinos/SnT-Backend#readme"
+}
