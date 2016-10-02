@@ -11,10 +11,20 @@ var UserSchema = new Schema({
         unique: true,
         required: true
     },
+  lastName: {
+        type: String,
+        unique: false,
+        required: false
+  }
   password: {
         type: String,
         required: true
-    }
+    },
+  email: {
+        type: String,
+        unique: true,
+        required: false
+  }
 });
  
 UserSchema.pre('save', function (next) {

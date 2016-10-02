@@ -14,7 +14,8 @@
     "passport-jwt": "^1.2.1"
   },
   "scripts": {
-    "test": "gotestos"
+    "test": "gotestos",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/Eddinos/SnT-Backend/issues"
   },
-  "homepage": "https://github.com/Eddinos/SnT-Backend#readme"
+  "homepage": "https://github.com/Eddinos/SnT-Backend#readme",
+  "main": "server.js"
 }

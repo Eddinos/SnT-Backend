@@ -12,6 +12,17 @@ var jwt         = require('jwt-simple');
 // get our request parameters
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+	if (req.method === 'OPTIONS') {
+		res.end();
+	} else {
+	next();
+	}
+});
  
 // log to console
 app.use(morgan('dev'));
@@ -44,7 +55,9 @@ apiRoutes.post('/signup', function(req, res) {
   } else {
     var newUser = new User({
       name: req.body.name,
-      password: req.body.password
+      lastName: req.body.lastName,
+      password: req.body.password,
+      email: req.body.email
     });
     // save the user
     newUser.save(function(err) {
@@ -94,7 +107,10 @@ apiRoutes.get('/memberinfo', passport.authenticate('jwt', { session: false}), fu
         if (!user) {
           return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
         } else {
-          res.json({success: true, msg: 'Welcome in the member area ' + user.name + '!'});
+          res.json({success: true, msg: 'Authentication granted', user: {
+            name: user.name,
+            email: user.email
+          }});
         }
     });
   } else {
