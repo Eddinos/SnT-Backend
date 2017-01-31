@@ -8,6 +8,7 @@ var config      = require('./config/database'); // get db config file
 var User        = require('./app/models/user'); // get the mongoose model
 var port        = process.env.PORT || 8080;
 var jwt         = require('jwt-simple');
+var nodemailer  = require('nodemailer');
  
 // get our request parameters
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +24,9 @@ app.use(function (req, res, next) {
 	next();
 	}
 });
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
  
 // log to console
 app.use(morgan('dev'));
@@ -35,6 +39,7 @@ app.get('/', function(req, res) {
   res.send('Hello! The API is at http://localhost:' + port + '/api');
 });
  
+
 // Start the server
 app.listen(port);
 console.log('There will be dragons: http://localhost:' + port);
@@ -116,6 +121,27 @@ apiRoutes.get('/memberinfo', passport.authenticate('jwt', { session: false}), fu
   } else {
     return res.status(403).send({success: false, msg: 'No token provided.'});
   }
+});
+
+apiRoutes.post('/contactus', (req, res) => {
+    var name = req.body.name;
+    var from = req.body.from;
+    var message = req.body.message;
+    var to = 'eddine.djerboua@gmail.com';
+    var smtpTransport = nodemailer.createTransport('smtps://blacko.sardino%40gmail.com:RavioliSandwich@smtp.gmail.com');
+    var mailOptions = {
+        from: from,
+        to: to, 
+        subject: name+' cherche le contact',
+        text: message
+    }
+    smtpTransport.sendMail(mailOptions, function(error, response){
+        if(error){
+            res.send(error)
+        }else{
+            res.send('Mail successfully sent');
+        }
+    });
 });
  
 getToken = function (headers) {

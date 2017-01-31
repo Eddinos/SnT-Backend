@@ -10,6 +10,7 @@
     "jwt-simple": "^0.3.1",
     "mongoose": "~4.2.4",
     "morgan": "~1.5.0",
+    "nodemailer": "^3.0.0",
     "passport": "^0.3.0",
     "passport-jwt": "^1.2.1"
   },
@@ -26,6 +27,5 @@
   "bugs": {
     "url": "https://github.com/Eddinos/SnT-Backend/issues"
   },
-  "homepage": "https://github.com/Eddinos/SnT-Backend#readme",
-  "main": "server.js"
+  "homepage": "https://github.com/Eddinos/SnT-Backend#readme"
 }
