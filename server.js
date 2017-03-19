@@ -131,7 +131,7 @@ apiRoutes.post('/contactus', (req, res) => {
     var from = req.body.from;
     var message = req.body.message;
     var to = 'eddine.djerboua@gmail.com';
-    var smtpTransport = nodemailer.createTransport('smtps://blacko.sardino%40gmail.com:RavioliSandwich@smtp.gmail.com');
+    var smtpTransport = nodemailer.createTransport('smtp://blacko.sardino%40gmail.com:RavioliSandwich@smtp.gmail.com');
     var mailOptions = {
         from: from,
         to: to,
@@ -142,7 +142,12 @@ apiRoutes.post('/contactus', (req, res) => {
         if(error){
             res.send(error)
         }else{
-            res.send('Mail successfully sent');
+          if (response.accepted && response.accepted.length > 0) {
+            res.json({success: true, msg: 'Your message was succesfully sent'})
+          }
+          else {
+            res.json({success: false, msg:'Something went wrong when sending the message, please try again later'})
+          }
         }
     });
 });
