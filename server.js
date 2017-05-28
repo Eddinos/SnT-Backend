@@ -132,13 +132,24 @@ apiRoutes.post('/contactus', (req, res) => {
     var message = req.body.message;
     var to = 'eddine.djerboua@gmail.com';
     var smtpTransport = nodemailer.createTransport('smtp://blacko.sardino%40gmail.com:RavioliSandwich@smtp.gmail.com');
+		var transporter = nodemailer.createTransport({
+			service: 'Gmail',
+			auth: {
+				type: 'OAuth2',
+				user: 'blacko.sardino@gmail.com',
+				clientId: '1064833285777-cmn1pa38efhclsuu77nsbm6aqsifgeha.apps.googleusercontent.com',
+				clientSecret: 'gzPoZJw1fpS69c9lnJOlqU-r',
+				refreshToken: '1/kyx9PddC0_R3G0sfKHBc-rkfGEdn01njO0VLcure-YvI2f726WNyNhByMoEYhbyE',
+				accessToken: 'ya29.GltYBAZRtNxHShtQpn7wTwVg3Lp2Z-7wgpEiSmF8EUcZKvWYpZixuniD0KQ1TDQ4nYgR_OY_4IO3A2EwQpY4-Wa1JMkAm2pr8ilfV5iDD4tcPQjqrDJNot91YwQD'
+			}
+		})
     var mailOptions = {
         from: from,
         to: to,
         subject: name+' cherche le contact',
         text: message + '\nfrom ' + from
     }
-    smtpTransport.sendMail(mailOptions, function(error, response){
+    transporter.sendMail(mailOptions, function(error, response){
         if(error){
             res.send(error)
         }else{
@@ -151,6 +162,45 @@ apiRoutes.post('/contactus', (req, res) => {
         }
     });
 });
+
+apiRoutes.post('/contactMe', (req, res) => {
+		var name = req.body.name;
+		var from = req.body.from;
+		var message = req.body.message;
+		var to = 'eddine.djerboua@gmail.com';
+		var transporter = nodemailer.createTransport({
+	    host: 'smtp-pulse.com',
+			port: '465',
+			secure: true,
+	    auth: {
+	        user: 'eddine.djerboua@gmail.com',
+	        pass: 'i6oipDBDNTfT'
+	    }
+		});
+
+	// setup e-mail data, even with unicode symbols
+	var mailOptions = {
+	    from: `${name} <${from}>`, // sender address (who sends)
+	    to: to, // list of receivers (who receives)
+	    subject: `${name} cherche le contact`, // Subject line
+	    text: message + '\nfrom ' + from, // plaintext body
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, response){
+			if(error){
+					error.success = false;
+					res.send(error)
+			}else{
+				if (response.accepted && response.accepted.length > 0) {
+					res.json({success: true, msg: 'Your message was succesfully sent'})
+				}
+				else {
+					res.json({success: false, msg:'Something went wrong when sending the message, please try again later'})
+				}
+			}
+		});
+})
 
 apiRoutes.get('/getProjects', (req, res) => {
   if(req.query.id) {
