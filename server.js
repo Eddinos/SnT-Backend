@@ -139,10 +139,17 @@ apiRoutes.post('/contactus', (req, res) => {
 				user: 'blacko.sardino@gmail.com',
 				clientId: '1064833285777-cmn1pa38efhclsuu77nsbm6aqsifgeha.apps.googleusercontent.com',
 				clientSecret: 'gzPoZJw1fpS69c9lnJOlqU-r',
-				refreshToken: '1/kyx9PddC0_R3G0sfKHBc-rkfGEdn01njO0VLcure-YvI2f726WNyNhByMoEYhbyE',
+				refreshToken: '1/5q36-xubpPnylo-u93xUP56ZyheovwC1auWMmePCjCY',
 				accessToken: 'ya29.GltYBAZRtNxHShtQpn7wTwVg3Lp2Z-7wgpEiSmF8EUcZKvWYpZixuniD0KQ1TDQ4nYgR_OY_4IO3A2EwQpY4-Wa1JMkAm2pr8ilfV5iDD4tcPQjqrDJNot91YwQD'
 			}
 		})
+		transporter.on('token', token => {
+		    console.log('A new access token was generated');
+		    console.log('User: %s', token.user);
+		    console.log('Access Token: %s', token.accessToken);
+		    console.log('Expires: %s', new Date(token.expires));
+		});
+
     var mailOptions = {
         from: from,
         to: to,
@@ -151,7 +158,7 @@ apiRoutes.post('/contactus', (req, res) => {
     }
     transporter.sendMail(mailOptions, function(error, response){
         if(error){
-            res.send(error)
+            res.json({success: false, msg:'Something went wrong when sending the message, please try again later', error: error})
         }else{
           if (response.accepted && response.accepted.length > 0) {
             res.json({success: true, msg: 'Your message was succesfully sent'})
