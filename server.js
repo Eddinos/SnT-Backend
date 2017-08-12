@@ -41,6 +41,9 @@ app.get('/', function(req, res) {
   res.send('Hello! The API is at http://localhost:' + port + '/api');
 });
 
+console.log(__dirname);
+app.use(express.static(__dirname + '/public'));
+
 
 // Start the server
 app.listen(port);
