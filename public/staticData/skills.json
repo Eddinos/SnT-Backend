@@ -1,0 +1,93 @@
+{
+  "front": {
+    "title": "Front-end sills",
+    "sliderSide": "left",
+    "barStyle": {
+      "backgroundColor": "#ff9125"
+    },
+    "technos": [
+      {
+        "techno": "javascript",
+        "value": 75
+      },
+      {
+        "techno": "Angular",
+        "value": 80
+      },
+      {
+        "techno": "jQuery",
+        "value": 65
+      },
+      {
+        "techno": "React",
+        "value": 70
+      },
+      {
+        "techno": "CSS",
+        "value": 75
+      },
+      {
+        "techno": "Sass",
+        "value": 80
+      }
+    ]
+  },
+  "back": {
+    "title": "Back-end sills",
+    "sliderSide": "right",
+    "barStyle": {
+      "backgroundColor": "#2191ff"
+    },
+    "technos": [
+      {
+        "techno": "C#",
+        "value": 55
+      },
+      {
+        "techno": ".Net WebAPI 2",
+        "value": 60
+      },
+      {
+        "techno": "Node",
+        "value": 45
+      },
+      {
+        "techno": "MongoDB",
+        "value": 35
+      },
+      {
+        "techno": "SQL Server",
+        "value": 40
+      }
+    ]
+  },
+  "tools": {
+    "title": "Tools and methodologies",
+    "sliderSide": "bottom",
+    "barStyle": {
+      "backgroundColor": "#00e498"
+    },
+    "technos": [
+      {
+        "techno": "Git, Gitflow",
+        "value": 80
+      },
+      {
+        "techno": "Agile methodology",
+        "value": 67
+      },
+      {
+        "techno": "Continuous integration",
+        "value": 75
+      },
+      {
+        "techno": "responsive design",
+        "value": 50
+      },
+      {
+        "techno": "UX development",
+        "value": 30
+      }
+    ]
+  }
+}
