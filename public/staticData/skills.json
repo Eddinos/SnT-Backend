@@ -12,15 +12,15 @@
       },
       {
         "techno": "Angular",
-        "value": 60
+        "value": 59
       },
       {
         "techno": "jQuery",
-        "value": 60
+        "value": 62
       },
       {
         "techno": "React",
-        "value": 50
+        "value": 52
       },
       {
         "techno": "Vue",
@@ -28,11 +28,11 @@
       },
       {
         "techno": "CSS",
-        "value": 65
+        "value": 64
       },
       {
         "techno": "Sass",
-        "value": 65
+        "value": 67
       }
     ]
   },
@@ -53,11 +53,11 @@
       },
       {
         "techno": "Node",
-        "value": 35
+        "value": 30
       },
       {
         "techno": "MongoDB",
-        "value": 30
+        "value": 27
       },
       {
         "techno": "SQL Server",
