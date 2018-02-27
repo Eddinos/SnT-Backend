@@ -1,4 +1,4 @@
-{
+  {
   "front": {
     "title": "Front-end sills",
     "sliderSide": "left",
@@ -8,11 +8,11 @@
     "technos": [
       {
         "techno": "javascript",
-        "value": 75
+        "value": 65
       },
       {
         "techno": "Angular",
-        "value": 80
+        "value": 60
       },
       {
         "techno": "jQuery",
@@ -20,15 +20,15 @@
       },
       {
         "techno": "React",
-        "value": 70
+        "value": 50
       },
       {
         "techno": "CSS",
-        "value": 75
+        "value": 70
       },
       {
         "techno": "Sass",
-        "value": 80
+        "value": 70
       }
     ]
   },
@@ -49,11 +49,11 @@
       },
       {
         "techno": "Node",
-        "value": 45
+        "value": 35
       },
       {
         "techno": "MongoDB",
-        "value": 35
+        "value": 30
       },
       {
         "techno": "SQL Server",
@@ -70,15 +70,15 @@
     "technos": [
       {
         "techno": "Git, Gitflow",
-        "value": 80
+        "value": 75
       },
       {
         "techno": "Agile methodology",
-        "value": 67
+        "value": 63
       },
       {
         "techno": "Continuous integration",
-        "value": 75
+        "value": 70
       },
       {
         "techno": "responsive design",
@@ -86,7 +86,7 @@
       },
       {
         "techno": "UX development",
-        "value": 30
+        "value": 20
       }
     ]
   }
