@@ -8,7 +8,7 @@
     "technos": [
       {
         "techno": "javascript",
-        "value": 65
+        "value": 67
       },
       {
         "techno": "Angular",
@@ -16,19 +16,23 @@
       },
       {
         "techno": "jQuery",
-        "value": 65
+        "value": 60
       },
       {
         "techno": "React",
         "value": 50
       },
       {
+        "techno": "Vue",
+        "value": 24
+      },
+      {
         "techno": "CSS",
-        "value": 70
+        "value": 65
       },
       {
         "techno": "Sass",
-        "value": 70
+        "value": 65
       }
     ]
   },
