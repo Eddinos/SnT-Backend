@@ -9,6 +9,7 @@ var User        = require('./app/models/user'); // get the mongoose model
 var port        = process.env.PORT || 8080;
 var jwt         = require('jwt-simple');
 var nodemailer  = require('nodemailer');
+var mailgun     = require('mailgun-js');
 
 var Project     = require('./app/models/project');
 
@@ -134,43 +135,61 @@ apiRoutes.post('/contactus', (req, res) => {
     var from = req.body.from;
     var message = req.body.message;
     var to = 'eddine.djerboua@gmail.com';
-    var smtpTransport = nodemailer.createTransport('smtp://blacko.sardino%40gmail.com:RavioliSandwich@smtp.gmail.com');
-		var transporter = nodemailer.createTransport({
-			service: 'Gmail',
-			auth: {
-				type: 'OAuth2',
-				user: 'blacko.sardino@gmail.com',
-				clientId: '1064833285777-cmn1pa38efhclsuu77nsbm6aqsifgeha.apps.googleusercontent.com',
-				clientSecret: 'gzPoZJw1fpS69c9lnJOlqU-r',
-				refreshToken: '1/5q36-xubpPnylo-u93xUP56ZyheovwC1auWMmePCjCY',
-				accessToken: 'ya29.GltYBAZRtNxHShtQpn7wTwVg3Lp2Z-7wgpEiSmF8EUcZKvWYpZixuniD0KQ1TDQ4nYgR_OY_4IO3A2EwQpY4-Wa1JMkAm2pr8ilfV5iDD4tcPQjqrDJNot91YwQD'
-			}
-		})
-		transporter.on('token', token => {
-		    console.log('A new access token was generated');
-		    console.log('User: %s', token.user);
-		    console.log('Access Token: %s', token.accessToken);
-		    console.log('Expires: %s', new Date(token.expires));
-		});
 
-    var mailOptions = {
-        from: from,
-        to: to,
-        subject: name+' cherche le contact',
-        text: message + '\nfrom ' + from
-    }
-    transporter.sendMail(mailOptions, function(error, response){
-        if(error){
-            res.json({success: false, msg:'Something went wrong when sending the message, please try again later', error: error})
-        }else{
-          if (response.accepted && response.accepted.length > 0) {
-            res.json({success: true, msg: 'Your message was succesfully sent'})
-          }
-          else {
-            res.json({success: false, msg:'Something went wrong when sending the message, please try again later'})
-          }
-        }
+    const api_key = "5c3c8f9a5663d6101a20500cf0cdfbca-a4502f89-eb650772"
+
+    const DOMAIN = 'sandboxa6d62a13.ok';
+    const mg = mailgun({apiKey: api_key, domain: DOMAIN});
+    const data = {
+      from: from,
+      to: to,
+      subject: 'Hello',
+      text: message
+    };
+    mg.messages().send(data, function (error, body) {
+      if (!error) {
+        res.json({success: true, msg: 'Thank you, your message was succesfully sent'})
+      }
+      res.json({success: false, msg: 'Something went wrong when sending the message, please try again later'})
     });
+    
+    // var smtpTransport = nodemailer.createTransport('smtp://blacko.sardino%40gmail.com:RavioliSandwich@smtp.gmail.com');
+		// var transporter = nodemailer.createTransport({
+		// 	service: 'Gmail',
+		// 	auth: {
+		// 		type: 'OAuth2',
+		// 		user: 'blacko.sardino@gmail.com',
+		// 		clientId: '1064833285777-cmn1pa38efhclsuu77nsbm6aqsifgeha.apps.googleusercontent.com',
+		// 		clientSecret: 'gzPoZJw1fpS69c9lnJOlqU-r',
+		// 		refreshToken: '1/5q36-xubpPnylo-u93xUP56ZyheovwC1auWMmePCjCY',
+		// 		accessToken: 'ya29.GltYBAZRtNxHShtQpn7wTwVg3Lp2Z-7wgpEiSmF8EUcZKvWYpZixuniD0KQ1TDQ4nYgR_OY_4IO3A2EwQpY4-Wa1JMkAm2pr8ilfV5iDD4tcPQjqrDJNot91YwQD'
+		// 	}
+		// })
+		// transporter.on('token', token => {
+		//     console.log('A new access token was generated');
+		//     console.log('User: %s', token.user);
+		//     console.log('Access Token: %s', token.accessToken);
+		//     console.log('Expires: %s', new Date(token.expires));
+		// });
+
+    // var mailOptions = {
+    //     from: from,
+    //     to: to,
+    //     subject: name+' cherche le contact',
+    //     text: message + '\nfrom ' + from
+    // }
+    // transporter.sendMail(mailOptions, function(error, response){
+    //     if(error){
+    //         res.json({success: false, msg:'Something went wrong when sending the message, please try again later', error: error})
+    //     }else{
+    //       if (response.accepted && response.accepted.length > 0) {
+    //         res.json({success: true, msg: 'Your message was succesfully sent'})
+    //       }
+    //       else {
+    //         res.json({success: false, msg:'Something went wrong when sending the message, please try again later'})
+    //       }
+    //     }
+    // });
 });
 
 apiRoutes.post('/contactMe', (req, res) => {
