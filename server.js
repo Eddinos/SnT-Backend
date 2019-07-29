@@ -136,19 +136,21 @@ apiRoutes.post('/contactus', (req, res) => {
     var message = req.body.message;
     var to = 'eddine.djerboua@gmail.com';
 
-    const api_key = "5c3c8f9a5663d6101a20500cf0cdfbca-a4502f89-eb650772"
+    const api_key = process.env.MAIL_API_KEY
 
-    const DOMAIN = 'sandboxa6d62a13.ok';
+    const DOMAIN = process.env.MAIL_BASE_URL;
     const mg = mailgun({apiKey: api_key, domain: DOMAIN});
     const data = {
       from: from,
       to: to,
-      subject: 'Hello',
+      subject: name + ' cherche le contact',
       text: message
     };
     mg.messages().send(data, function (error, body) {
       if (!error) {
-        res.json({success: true, msg: 'Thank you, your message was succesfully sent'})
+        res.json({success: true, msg: 'Thank you, your message was succesfully sent', body})
+        console.log(body)
+        return true;
       }
       res.json({success: false, msg: 'Something went wrong when sending the message, please try again later', error, body})
       console.log(error)
