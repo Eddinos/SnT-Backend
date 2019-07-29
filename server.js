@@ -150,7 +150,8 @@ apiRoutes.post('/contactus', (req, res) => {
       if (!error) {
         res.json({success: true, msg: 'Thank you, your message was succesfully sent'})
       }
-      res.json({success: false, msg: 'Something went wrong when sending the message, please try again later'})
+      res.json({success: false, msg: 'Something went wrong when sending the message, please try again later', error, body})
+      console.log(error)
     });
     
     // var smtpTransport = nodemailer.createTransport('smtp://blacko.sardino%40gmail.com:RavioliSandwich@smtp.gmail.com');
