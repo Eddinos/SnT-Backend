@@ -7,7 +7,7 @@
     "bcryptjs": "2.3.0",
     "body-parser": "~1.9.2",
     "express": "~4.9.8",
-    "jwt-simple": "^0.3.1",
+    "jwt-simple": "^0.5.3",
     "mailgun-js": "~0.22.0",
     "mongoose": "~5.7.5",
     "morgan": "~1.5.0",
